@@ -1,27 +1,11 @@
-# Template for repositories in MindTheGap
-Template for future repositories created as part of the project
+# Utility scripts to examine and plot outputs of the reactive transport model by L'Heureux
 
-## Purpose
+To be applied to the outputs of the [Python implementation](https://github.com/MindTheGap-ERC/reactive-transport-model-for-limestone-marl-sequences)
+and possibly the [Fortran predecessor](https://github.com/astro-turing/lheureux)
 
-What is this code doing or supposed to do
-
-### Installation and running instructions
-
-### Repository structure
-*Folder structure goes here
+These are attempts to reproduce the diagenetic model for the formation of limestone-marl alternations proposed in [L’Heureux, ‘Diagenetic Self-Organization and Stochastic Resonance in a Model of Limestone-Marl Sequences’. 2018. Geofluids e4968315, doi: 10.1155/2018/4968315](https://www.hindawi.com/journals/geofluids/2018/4968315/)
 
 ## Authors
-*Here in alphabetical order. For the final repo, keep the relevant authors, change the order and (optionally) indicate roles as needed*
-
-__Peter Burgess__  
-University of Liverpool  
-Web page: [www.liverpool.ac.uk/environmental-sciences/staff/peter-burgess](https://www.liverpool.ac.uk/environmental-sciences/staff/peter-burgess/)
-
-
-__David De Vleeschouwer__  
-Westfälische Wilhelms-Universität Münster  
-Web page: [www.uni-muenster.de/GeoPalaeontologie/erdsystemforschung/staff/DeVleeschouwer](https://www.uni-muenster.de/GeoPalaeontologie/erdsystemforschung/staff/DeVleeschouwer.html)  
-ORCID: [0000-0002-3323-807X](https://orcid.org/0000-0002-3323-807X)
 
 __Johan Hidding__  
 Netherlands eScience Center  
@@ -41,19 +25,12 @@ email: e.b.jarochowska [at] uu.nl
 Web page: [www.uu.nl/staff/EBJarochowska](https://www.uu.nl/staff/EBJarochowska)  
 ORCID: [0000-0001-8937-9405](https://orcid.org/0000-0001-8937-9405)
 
-__Xianyi Liu__  
-Utrecht University  
-email: x.liu6 [at] uu.nl  
-Web page: [www.uu.nl/staff/XLiu6](https://www.uu.nl/staff/XLiu6)  
-ORCID: 
-
 __Hanno Spreeuw__  
 Netherlands eScience Center  
 email: h.spreeuw [at] esciencecenter.nl  
 Web page: [www.esciencecenter.nl/team/dr-hanno-spreeuw/](https://www.esciencecenter.nl/team/dr-hanno-spreeuw)  
 ORCID: [0000-0002-5057-0322](https://orcid.org/0000-0002-5057-0322)
 
-*Add external authors as necessary*
 
 ## Copyright
 
