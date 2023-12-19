@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "lma-utils"
+version = "0.1.0"
+description = "Utility scripts to examine and plot outputs of the reactive transport model by L'Heureux"
+authors = ["Emilia Jarochowska"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "lma_utils"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+datahugger = "^0.10.4"
+h5py = "^3.10.0"
+numpy = "^1.26.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

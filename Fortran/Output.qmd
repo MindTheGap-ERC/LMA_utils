@@ -1,0 +1,274 @@
+---
+title: "Output summary Fortran marlpde"
+author: "Emilia Jarochowska"
+format: pdf
+---
+
+```{r}
+#| label: Setup functions
+#| echo: false
+
+read_amarlx = function(file){
+  data=read.table(file,header=TRUE)
+  for (colname in colnames(data)){
+    a=strsplit(data[,colname],split="D")
+    data[,colname]=sapply(a, function(x) as.numeric(x[1])*10^as.numeric(x[2]))
+  }
+  rm(a)
+  return(data)
+}
+
+limits = function(variable1, variable2) {
+  if(max(variable1) > max(variable2)) 
+    return(max(variable1)) 
+  else return(max(variable2))
+}
+install.packages(setdiff(c("osfr"), rownames(installed.packages())))
+
+get_data_from_osf = function(link){
+  #' 
+  #' @title download data from osf
+  #' 
+  #' @param link url to the (public) url
+  #' 
+  #' @return invisible NULL
+  
+  my_project <- osfr::osf_retrieve_node(link)
+  
+  my_files <- osfr::osf_ls_files(my_project)
+  
+  osfr::osf_download(my_files)
+  
+  return(invisible())
+}
+```
+
+```{r}
+#| echo: false
+#| output: false
+#| eval: false
+if (file.exists("../OSF_data")) {
+ setwd("../OSF_data")
+} else {
+ dir.create("../OSF_data")
+ setwd("../OSF_data")
+}
+get_data_from_osf("https://osf.io/esv93/")
+```
+**Results from a run with $$ PhiIni = Phi0 = 0.8, dt = 5e^(-6) $$ **
+Using the [Fortran 2008 version](https://github.com/astro-turing/lheureux/commit/11e9f7cbff6e14530db485e36d1951340c434e2b).
+
+```{r}
+#| echo: false
+data <- read_amarlx("PhiIni = Phi0 = 0.8, 30 T*/amarlx")
+```
+
+In the original Fortran code, the values of state variables are saved at four points of the grid:
+
+`co(N/4), co(N/2), co(3*N/4), co(N)`
+
+Where the grid `N` has a length of 200. The length of the system is 500 cm.
+
+```{r}
+#| echo: false
+#| fig-height: 15
+
+par(mfrow=c(4,1))
+plot(x = data$t,
+     y = data$P,
+     xlab = "time (T*)",
+     ylab = "Concentration/porosity",type="o",
+     col = "purple",
+     pch = 16,
+     xlim=c(0,max(data$t)),
+     ylim=range(0,limits(data$co,data$ca)),
+     main = paste("Values at ", 500/4, " cm"))
+points(x = data$t,
+     y = data$AR,
+     pch = 25,
+     col = "navy")
+points(x = data$t,
+     y = data$CA,
+     pch = 24,
+     col = "orange")
+points(x = data$t,
+     y = data$co,
+     pch = 23,
+     col = "red")
+points(x = data$t,
+     y = data$ca,
+     pch = 20,
+     col = "green")
+
+plot(x = data$t,
+     y = data$P.1,
+     xlab = "time (T*)",
+     ylab = "Concentration/porosity",type="o",
+     col = "purple",
+     pch = 16,
+     xlim=c(0,max(data$t)),
+     ylim=range(0,limits(data$co.1,data$ca.1)),
+     main = paste("Values at ", 500/2, " cm"))
+points(x = data$t,
+     y = data$AR.1,
+     pch = 25,
+     col = "navy")
+points(x = data$t,
+     y = data$CA.1,
+     pch = 24,
+     col = "orange")
+points(x = data$t,
+     y = data$co.1,
+     pch = 23,
+     col = "red")
+points(x = data$t,
+     y = data$ca.1,
+     pch = 20,
+     col = "green")
+
+plot(x = data$t,
+     y = data$P.2,
+     xlab = "time (T*)",
+     ylab = "Concentration/porosity",type="o",
+     col = "purple",
+     pch = 16,
+     xlim=c(0,max(data$t)),
+     ylim=range(0,limits(data$co.2,data$ca.2)),
+     main = paste("Values at ", 3*500/4, " cm"))
+points(x = data$t,
+     y = data$AR.2,
+     pch = 25,
+     col = "navy")
+points(x = data$t,
+     y = data$CA.2,
+     pch = 24,
+     col = "orange")
+points(x = data$t,
+     y = data$co.2,
+     pch = 23,
+     col = "red")
+points(x = data$t,
+     y = data$ca.2,
+     pch = 20,
+     col = "green")
+
+plot(x = data$t,
+     y = data$P.3,
+     xlab = "time (T*)",
+     ylab = "Concentration/porosity",type="o",
+     col = "purple",
+     pch = 16,
+     xlim=c(0,max(data$t)),
+     ylim=range(0,limits(data$co.3,data$ca.3)),
+     main = paste("Values at 500 cm"))
+points(x = data$t,
+     y = data$AR.3,
+     pch = 25,
+     col = "navy")
+points(x = data$t,
+     y = data$CA.3,
+     pch = 24,
+     col = "orange")
+points(x = data$t,
+     y = data$co.3,
+     pch = 23,
+     col = "red")
+points(x = data$t,
+     y = data$ca.3,
+     pch = 20,
+     col = "green")
+legend(x = "topright",          
+       legend = c("Porosity", "C_AR", "C_CA", "C_Co3", "C_Ca"),
+       col = c("purple","navy","orange","red","green"),           
+       pch = c(16,25,24,23,20),
+       cex = 1.5) 
+```
+
+No oscillations are visible at any depth.
+
+```{r}
+#| echo: false
+#| fig-height: 8
+
+par(mfrow=c(2,1))
+
+plot(x = data$t,
+     y = data$U,
+     xlab = "time (T*)",
+     ylab = "Advection (dimensionless)",
+     type="o",
+     col = "gray",
+     pch = 21,
+     xlim=c(0,max(data$t)),
+     ylim=range(0,max(data$U)),
+     main = paste("Advection of solids at the bottom"))
+
+plot(x = data$t,
+     y = data$W,
+     xlab = "time (T*)",
+     ylab = "Advection (dimensionless)",
+     type="o",
+     col = "brown",
+     pch = 19,
+     xlim=c(0,max(data$t)),
+     ylim=range(max(data$W),min(data$W)),
+     main = paste("Advection of water at the bottom"))
+
+```
+Maybe the oscillations are very small. We can check by zooming in at the porosity.
+
+```{r}
+#| echo: false
+#| fig-height: 6
+plot(x = data$t,
+     y = data$P,
+     xlab = "time (T*)",
+     ylab = "Porosity",
+     col = "lightgray",
+     type="l",
+     xlim=c(0,max(data$t)))
+lines(x = data$t,
+     y = data$P.1,
+     col = "gray")
+lines(x = data$t,
+     y = data$P.2,
+     col = "darkgray")
+lines(x = data$t,
+     y = data$P.3,
+     col = "black")
+legend(x = "topright",          
+       legend = c("Porosity at the surface", "Porosity at other depths"),
+       col = c("lightgray", "black"),
+       lty = c(1,1),
+       cex = 1.5) 
+```
+
+Fig. 4. in L'Heureux (2018) actually refers to C_CA, so we can also zoom in on that variable:
+
+```{r}
+#| echo: false
+#| fig-height: 6
+plot(x = data$t,
+     y = data$CA,
+     xlab = "time (T*)",
+     ylab = "Concentration",
+     col = "lightgray",
+     type="l",
+     xlim=c(0,max(data$t)))
+lines(x = data$t,
+     y = data$CA.1,
+     col = "gray")
+lines(x = data$t,
+     y = data$CA.2,
+     col = "darkgray")
+lines(x = data$t,
+     y = data$CA.3,
+     col = "black")
+legend(x = "topright",
+       title = "Depth",
+       legend = c("125 cm", "250 cm", "375 cm", "500 cm"),
+       col = c("lightgray", "gray", "darkgray", "black"),
+       lty = c(1,1),
+       cex = 1) 
+```
+
