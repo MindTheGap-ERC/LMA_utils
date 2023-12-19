@@ -7,7 +7,7 @@ format: gfm
 ```{python}
 #| tags: [parameters]
 
-Solution_path = '../data/21_09_2023_09_29_17/LMAHeureuxPorosityDiff.hdf5'
+Solution_path = '{{ solution_path }}'
 ```
 
 ```{python}
