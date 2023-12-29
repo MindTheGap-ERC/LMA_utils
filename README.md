@@ -5,31 +5,21 @@ and possibly the [Fortran predecessor](https://github.com/astro-turing/lheureux)
 
 These are attempts to reproduce the diagenetic model for the formation of limestone-marl alternations proposed in [L’Heureux, ‘Diagenetic Self-Organization and Stochastic Resonance in a Model of Limestone-Marl Sequences’. 2018. Geofluids e4968315, doi: 10.1155/2018/4968315](https://www.hindawi.com/journals/geofluids/2018/4968315/)
 
+## Automating summaries of each run using Quarto
+
+In the `Python` directory, the following steps are attempted:
+- `download_files.py` get a batch of files from OSF and save in a `data` folder outside of the repository
+- `generate_parameters.py` generate a `parameters.yaml` from the list of files saved in `data`
+- `generate_templates.py` generate copies of the template Quarto document, `run_summary.qmd`, to be rendered one by one, saving them in the `rendered_files` folder
+- `run_quarto.py` iterate through the files listed in `parameters.yaml` to execute `quarto render` for each file in `rendered_files`
+
 ## Authors
-
-__Johan Hidding__  
-Netherlands eScience Center  
-email: j.hidding [at] esciencecenter.nl   
-Web page: [www.esciencecenter.nl/team/johan-hidding-msc/](https://www.esciencecenter.nl/team/johan-hidding-msc/)  
-ORCID: 
-
-__Niklas Hohmann__  
-Utrecht University  
-email: n.h.hohmann [at] uu.nl  
-Web page: [www.uu.nl/staff/NHohmann](https://www.uu.nl/staff/NHHohmann)  
-ORCID: [0000-0003-1559-1838](https://orcid.org/0000-0003-1559-1838)
 
 __Emilia Jarochowska__  
 Utrecht University  
 email: e.b.jarochowska [at] uu.nl  
 Web page: [www.uu.nl/staff/EBJarochowska](https://www.uu.nl/staff/EBJarochowska)  
 ORCID: [0000-0001-8937-9405](https://orcid.org/0000-0001-8937-9405)
-
-__Hanno Spreeuw__  
-Netherlands eScience Center  
-email: h.spreeuw [at] esciencecenter.nl  
-Web page: [www.esciencecenter.nl/team/dr-hanno-spreeuw/](https://www.esciencecenter.nl/team/dr-hanno-spreeuw)  
-ORCID: [0000-0002-5057-0322](https://orcid.org/0000-0002-5057-0322)
 
 
 ## Copyright
