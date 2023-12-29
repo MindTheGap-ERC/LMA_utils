@@ -1,7 +1,7 @@
 ---
 title: "Executable run summary"
 author: "Emilia Jarochowska"
-format: gfm
+format: html
 params:
   Solution_path: ../../data/18_11_2023_20_05_17/LMAHeureuxPorosityDiff.hdf5
 ---

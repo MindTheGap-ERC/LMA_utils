@@ -7,6 +7,6 @@ def generate_parameters(directory_path, output_file):
 
     with open(output_file, 'w') as yaml_file:
         for file in hdf5_files:
-            yaml_file.write(f"'Solution_path': {directory_path}{file}\n")
+            yaml_file.write(f"Solution_path:../{directory_path}{file}\n")
 
 generate_parameters('../../data/', 'parameters.yaml')
