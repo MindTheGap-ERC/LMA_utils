@@ -1,7 +1,7 @@
 ---
 title: "Output summary Fortran marlpde"
 author: "Emilia Jarochowska"
-format: pdf
+format: html
 ---
 
 ```{r}
@@ -47,12 +47,6 @@ get_data_from_osf = function(link){
 #| echo: false
 #| output: false
 #| eval: false
-if (file.exists("../OSF_data")) {
- setwd("../OSF_data")
-} else {
- dir.create("../OSF_data")
- setwd("../OSF_data")
-}
 get_data_from_osf("https://osf.io/esv93/")
 ```
 **Results from a run with $$ PhiIni = Phi0 = 0.8, dt = 5e^(-6) $$ **
@@ -60,7 +54,7 @@ Using the [Fortran 2008 version](https://github.com/astro-turing/lheureux/commit
 
 ```{r}
 #| echo: false
-data <- read_amarlx("PhiIni = Phi0 = 0.8, 30 T*/amarlx")
+data <- read_amarlx("PhiIni = Phi0 = 0.8, 30 T*, dt 1e-6/amarlx")
 ```
 
 In the original Fortran code, the values of state variables are saved at four points of the grid:
@@ -251,7 +245,7 @@ Fig. 4. in L'Heureux (2018) actually refers to C_CA, so we can also zoom in on t
 plot(x = data$t,
      y = data$CA,
      xlab = "time (T*)",
-     ylab = "Concentration",
+     ylab = "Calcite Concentration",
      col = "lightgray",
      type="l",
      xlim=c(0,max(data$t)))
@@ -270,5 +264,9 @@ legend(x = "topright",
        col = c("lightgray", "gray", "darkgray", "black"),
        lty = c(1,1),
        cex = 1) 
+```
+
+```{r}
+
 ```
 
