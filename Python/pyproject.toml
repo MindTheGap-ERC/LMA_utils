@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "automate-output"
+version = "0.1.0"
+description = "Generate a summary for each run of marlpde from a batch run"
+authors = ["Emilia Jarochowska"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "automate_output"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+papermill = "^2.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

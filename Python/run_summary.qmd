@@ -1,0 +1,32 @@
+---
+title: "Executable run summary"
+author: "Emilia Jarochowska"
+format: gfm
+params:
+  Solution_path: ../../data/18_11_2023_20_05_17/LMAHeureuxPorosityDiff.hdf5
+---
+
+```{python}
+#| tags: [parameters]
+
+Solution_path = '{{ solution_path }}'
+```
+
+```{python}
+import h5py
+Solution = h5py.File(Solution_path, 'r')
+data = Solution['data']
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+t = np.array(Solution['times'][:])
+s = np.array(data[:,:,0])
+fig, ax = plt.subplots()
+ax.plot(t, s)
+ax.set(xlabel='time [T*]', ylabel='Compounds/Porosity',
+       title=f"Phi0 = {Solution.attrs['Phi0']}, PhiIni = {Solution.attrs['PhiIni']}")
+ax.grid()
+```
+
