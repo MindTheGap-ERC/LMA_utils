@@ -10,6 +10,10 @@ packages = [{include = "automate_output"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 papermill = "^2.5.0"
+datahugger = "^0.10.4"
+h5py = "^3.10.0"
+matplotlib = "^3.8.2"
+numpy = "^1.26.2"
 
 
 [build-system]

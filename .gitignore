@@ -6,4 +6,6 @@ Python/.vscode/
 Python/*.md
 Python/run_summary_files/
 Python/parameters.yaml
-rendered_files/*
+Python/to_render
+Python/_quarto.yml
+Python/rendered_files

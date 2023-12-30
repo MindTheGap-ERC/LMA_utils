@@ -1,14 +1,3 @@
----
-title: "Executable run summary"
-author: "Emilia Jarochowska"
-format: html
----
-
-```{python}
-#| tags: [parameters]
-
-Solution_path = '../../data/18_11_2023_20_05_17/LMAHeureuxPorosityDiff.hdf5'
-```
 
 ```{python}
 import h5py

@@ -7,11 +7,29 @@ These are attempts to reproduce the diagenetic model for the formation of limest
 
 ## Automating summaries of each run using Quarto
 
-In the `Python` directory, the following steps are attempted:
+It's a prototype with various things hardcoded. Wait for more :-)
+In the `Python` directory:
 - `download_files.py` get a batch of files from OSF and save in a `data` folder outside of the repository
-- `generate_parameters.py` generate a `parameters.yaml` from the list of files saved in `data`
-- `generate_templates.py` generate copies of the template Quarto document, `run_summary.qmd`, to be rendered one by one, saving them in the `rendered_files` folder
-- `run_quarto.py` iterate through the files listed in `parameters.yaml` to execute `quarto render` for each file in `rendered_files`
+- `generate_qmds.py` from the list of folders in 'data', generate template Quarto files in `to_render`, including the same code for analyses to be carried our on each of the file, taken from `analyses.qmd`. It also generates a `_quarto.yml` file which makes this a project and allows rendering all files at once.
+- `analyses.qmd` has (will have) all the steps to be analysed for each output `hdf5` file
+
+To run the analyses on all files, download them:
+```
+poetry shell
+python3 download_files.py
+```
+generate the templates:
+```
+python3 generate_qmds.py
+```
+and render the project. You need Quarto for this.
+```
+quarto render
+```
+The default format is `html` but you can also render to something else:
+```
+quarto render --to gfm
+```
 
 ## Authors
 
@@ -20,7 +38,6 @@ Utrecht University
 email: e.b.jarochowska [at] uu.nl  
 Web page: [www.uu.nl/staff/EBJarochowska](https://www.uu.nl/staff/EBJarochowska)  
 ORCID: [0000-0001-8937-9405](https://orcid.org/0000-0001-8937-9405)
-
 
 ## Copyright
 
