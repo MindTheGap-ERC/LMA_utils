@@ -3,10 +3,7 @@ import os
 os.makedirs("to_render", exist_ok=True)
 
 def get_directories(path):
-  directories = []
-  for entry in os.scandir(path):
-    if entry.is_dir():
-      directories.append(entry.name)
+  directories = [entry.name for entry in os.scandir(path) if entry.is_dir()]
   return directories
 
 def generate_qmds(path, template):
