@@ -4,8 +4,8 @@ Python/.vscode/
 .vscode/
 .Rhistory
 Python/*.md
-Python/run_summary_files/
-Python/parameters.yaml
 Python/to_render
 Python/_quarto.yml
 Python/rendered_files
+Python/__pycache__/
+Python/*.ipynb

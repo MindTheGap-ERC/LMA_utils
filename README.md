@@ -8,7 +8,7 @@ These are attempts to reproduce the diagenetic model for the formation of limest
 ## Automating summaries of each run of [marlpde](https://github.com/MindTheGap-ERC/reactive-transport-model-for-limestone-marl-sequences) using Quarto
 
 In the `Python` directory. Marlpde saves `hdf5` files, each run in a separate folder. To download and summarise an entire batch of `marlpde` output files, you can use a template with all analyses to be carried out for each output file. It uses a Quarto format, which is Markdown-based and can be rendered to various formats. 
-- `analyses.qmd` has (will have) all the steps to be analysed for each output `hdf5` file. The `yaml` header of the file should be removed. This can probably be fixed by removing this in the Python script ot setting Quarto execution options to ignore unknown fields(?).
+- `analyses.qmd` has (will have) all the steps to be analysed for each output `hdf5` file.
 - `analyse_marlpde.py` takes following arguments: 
     -   DOI of the archive where the files are stored (must be public, this is a requirement of `datahugger`), 
     -   path where to save the files,
@@ -18,12 +18,12 @@ From the list of folders in 'data', it generates template Quarto files in `to_re
 How to use:
 ```
 poetry shell
-python3
+python
 ```
 In a Python shell, you can run interactively an example:
 ```
-import analyse_marlpde.py
-jghsx = batch_results.Results("10.17605/OSF.IO/JGHSX", "../../data/jghsx/", "analyses.qmd")
+import analyse_marlpde
+jghsx = analyse_marlpde.Results("10.17605/OSF.IO/JGHSX", "../../data/jghsx/", "analyses.qmd")
 ```
 The first time you have to download the files. Unless you have them locally (make up a DOI) or have downloaded them before. Downloading may take a while.
 ```
