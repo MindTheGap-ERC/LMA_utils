@@ -1,13 +1,33 @@
 
 ```{python}
+#| label: imports
+#| echo: false
 import h5py
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+```
+
+# Run parameters
+
+```{python}
+#| echo: false
 Solution = h5py.File(Solution_path, 'r')
 data = Solution['data']
+data_dict = dict(Solution.attrs.items())
 ```
 
 ```{python}
-import matplotlib.pyplot as plt
-import numpy as np
+#| label: Run summary
+f"Surface porosity Phi0 = {Solution.attrs['Phi0']}"
+f"Initial porosity of the sediment Phi00 = {Solution.attrs['PhiIni']}"
+f"Compressibility parameter beta = {Solution.attrs['beta']}"
+```
+
+This was a run on 
+# Evolution through time
+
+```{python}
 t = np.array(Solution['times'][:])
 s = np.array(data[:,:,0])
 fig, ax = plt.subplots()
