@@ -17,15 +17,15 @@ From the list of folders in 'data', it generates template Quarto files in `to_re
 
 How to use:
 ```
+poetry install
 poetry shell
-python
 ```
 In a Python shell, you can run interactively an example:
 ```
 import analyse_marlpde
-jghsx = analyse_marlpde.Results("10.17605/OSF.IO/JGHSX", "../../data/jghsx/", "analyses.qmd")
+jghsx = analyse_marlpde.Results("../../data/jghsx/", "analyses.qmd", "10.17605/OSF.IO/JGHSX")
 ```
-The first time you have to download the files. Unless you have them locally (make up a DOI) or have downloaded them before. Downloading may take a while.
+The first time you have to download the files. Unless you have them locally or have downloaded them before, then you can skip the last argument. Downloading may take a while.
 ```
 jghsx.download()
 ```

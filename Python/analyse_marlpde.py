@@ -2,10 +2,11 @@ import datahugger
 import os
 
 class Results:
-    def __init__(self, DOI, path, template) :
+    def __init__(self, path, template, DOI=None) :
         self.DOI = DOI
         self.path = path
         self.template = template
+        self.directories = [entry.name for entry in os.scandir(self.path) if entry.is_dir()]
     
     def download(self):
         datahugger.get(self.DOI, self.path)
@@ -14,8 +15,7 @@ class Results:
         os.makedirs("to_render", exist_ok=True)
         with open("_quarto.yml", 'w') as project_file:
             project_file.write(f"project:\n  output-dir: rendered_files\n  render:\n")
-        directories = [entry.name for entry in os.scandir(self.path) if entry.is_dir()]
-        for entry in directories:
+        for entry in self.directories:
             rendered_file = os.path.join("to_render/", f"{entry}.qmd")
             with open(rendered_file, 'w') as new_file:
                 yaml_header = f"---\ntitle: \"{entry}\"\n---\n"
@@ -24,8 +24,3 @@ class Results:
                 new_file.writelines([yaml_header, parameters_cell, analyses])
             with open("_quarto.yml", 'a') as project_file:
                 project_file.write(f"    - to_render/{entry}.qmd\n")
-
-if __name__ == "__main__":
-    import sys
-    Results.download(sys.argv[1], sys.argv[2])
-    Results.generate_qmds(sys.argv[2], sys.argv[3])
